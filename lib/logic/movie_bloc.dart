@@ -21,4 +21,38 @@ class MovieBloc {
         headers: {"Accept": "application/json"});
     return response.body;
   }
+
+  static String releaseDate(String date) {
+    String month, day, year;
+    if (date.substring(5, 7) == "01") {
+      month = "January";
+    } else if (date.substring(5, 7) == "02") {
+      month = "February";
+    } else if (date.substring(5, 7) == "03") {
+      month = "March";
+    } else if (date.substring(5, 7) == "04") {
+      month = "April";
+    } else if (date.substring(5, 7) == "05") {
+      month = "May";
+    } else if (date.substring(5, 7) == "06") {
+      month = "June";
+    } else if (date.substring(5, 7) == "07") {
+      month = "July";
+    } else if (date.substring(5, 7) == "08") {
+      month = "August";
+    } else if (date.substring(5, 7) == "09") {
+      month = "September";
+    } else if (date.substring(5, 7) == "10") {
+      month = "October";
+    } else if (date.substring(5, 7) == "11") {
+      month = "November";
+    } else if (date.substring(5, 7) == "12") {
+      month = "December";
+    } else {
+      month = "";
+    }
+    day = date.substring(8);
+    year = date.substring(0, 4);
+    return "${month} ${day}, ${year}";
+  }
 }
