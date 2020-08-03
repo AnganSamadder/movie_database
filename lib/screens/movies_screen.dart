@@ -57,8 +57,9 @@ class MoviesScreen extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (_) => DescriptionScreen(
-                            moviePoster: movies[index].poster,
                             movieTitle: movies[index].title,
+                            moviePoster: movies[index].poster,
+                            movieBackdrop: movies[index].backdrop,
                             movieOverview: movies[index].overview,
                             movieReleaseDate: movies[index].releaseDate,
                             genreIds: movies[index].genreIds,
