@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:moviedatabase/logic/genre_bloc.dart';
-
 import 'model/movie_model.dart';
 import 'movie_list.dart';
 import 'package:http/http.dart' as http;

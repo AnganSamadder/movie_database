@@ -24,7 +24,7 @@ class MoviesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var movies = Provider.of<List<MovieModel>>(context);
-//    var genres = Provider.of<List<GenreModel>>(context);
+    var genres = Provider.of<List<GenreModel>>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text('Movies'),
@@ -44,10 +44,7 @@ class MoviesScreen extends StatelessWidget {
                             ? Image.asset('images/loading.gif')
                             : FadeInImage.assetNetwork(
                                 placeholder: 'images/loading.gif',
-                                image:
-                                    "https://image.tmdb.org/t/p/w600_and_h900_bestv2/" +
-                                        movies[index].poster
-                            ),
+                                image: movies[index].poster),
                         Text(
                           movies[index].title,
                           style: TextStyle(
@@ -64,12 +61,15 @@ class MoviesScreen extends StatelessWidget {
                             movieTitle: movies[index].title,
                             movieOverview: movies[index].overview,
                             movieReleaseDate: movies[index].releaseDate,
+                            genreIds: movies[index].genreIds,
+                            genreDatabase: genres,
                           ),
                         ),
                       );
                     },
                   ),
                 ),
-              ));
+              )
+    );
   }
 }

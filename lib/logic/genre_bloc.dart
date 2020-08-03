@@ -13,7 +13,7 @@ class GenreBloc {
   Future<List<GenreModel>> loadGenreData() async {
     var dataString = await loadAsset();
     Map<String, dynamic> jsonMovieData = jsonDecode(dataString);
-    genres = GenreBloc.fromJson(jsonMovieData['results']).genres;
+    genres = GenreBloc.fromJson(jsonMovieData['genres']).genres;
     return genres;
   }
 
@@ -25,4 +25,15 @@ class GenreBloc {
 
   GenreBloc.fromJson(List<dynamic> usersJson)
       : genres = usersJson.map((genres) => GenreModel.fromJson(genres)).toList();
+
+  static List<String> getGenres(List<String> movieGenres, List<GenreModel> genreDatabase, List<dynamic> movieGenreIds) {
+    for (int i = 0; i < genreDatabase.length; i++) {
+      for (int a = 0; a < movieGenreIds.length; a++) {
+        if (genreDatabase[i].id == movieGenreIds[a]) {
+          movieGenres.add(genreDatabase[i].name);
+        }
+      }
+    }
+    return movieGenres;
+  }
 }
