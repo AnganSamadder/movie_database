@@ -1,5 +1,3 @@
-import 'dart:ui' as ui;
-import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviedatabase/logic/genre_bloc.dart';
@@ -137,7 +135,7 @@ class DescriptionScreen extends StatelessWidget {
                                   movieOverview,
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20.0,
+                                    fontSize: 18.0,
                                   ),
                                 ),
                               ),

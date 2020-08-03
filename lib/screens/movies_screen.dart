@@ -34,40 +34,93 @@ class MoviesScreen extends StatelessWidget {
             ? Center(child: CircularProgressIndicator())
             : ListView.builder(
                 physics: BouncingScrollPhysics(),
-                itemCount: movies.length == null ? 0 : movies.length,
+                itemCount: movies.length == null ? 0 : (movies.length/2).round(),
                 itemBuilder: (_, int index) => Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: GestureDetector(
-                    child: Column(
-                      children: <Widget>[
-                        movies[index].poster == null
-                            ? Image.asset('images/loading.gif')
-                            : FadeInImage.assetNetwork(
-                                placeholder: 'images/loading.gif',
-                                image: movies[index].poster),
-                        Text(
-                          movies[index].title,
-                          style: TextStyle(
-                            fontSize: 20.0,
+                  padding: const EdgeInsets.all(5.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          width: (MediaQuery.of(context).size.width - 30)/ 2,
+                          child: GestureDetector(
+                            child: Column(
+                              children: <Widget>[
+                                movies[index*2].poster == null
+                                    ? Image.asset('images/loading.gif')
+                                    : FadeInImage.assetNetwork(
+                                        placeholder: 'images/loading.gif',
+                                        image: movies[index*2].poster),
+                                Text(
+                                  movies[index*2].title,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => DescriptionScreen(
+                                    movieTitle: movies[index*2].title,
+                                    moviePoster: movies[index*2].poster,
+                                    movieBackdrop: movies[index*2].backdrop,
+                                    movieOverview: movies[index*2].overview,
+                                    movieReleaseDate: movies[index*2].releaseDate,
+                                    genreIds: movies[index*2].genreIds,
+                                    genreDatabase: genres,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      ],
-                    ),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => DescriptionScreen(
-                            movieTitle: movies[index].title,
-                            moviePoster: movies[index].poster,
-                            movieBackdrop: movies[index].backdrop,
-                            movieOverview: movies[index].overview,
-                            movieReleaseDate: movies[index].releaseDate,
-                            genreIds: movies[index].genreIds,
-                            genreDatabase: genres,
+                      ),
+                      index*2+1 < movies.length
+                      ? Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          width: (MediaQuery.of(context).size.width - 30)/ 2,
+                          child: GestureDetector(
+                            child: Column(
+                              children: <Widget>[
+                                movies[index*2+1].poster == null
+                                    ? Image.asset('images/loading.gif')
+                                    : FadeInImage.assetNetwork(
+                                    placeholder: 'images/loading.gif',
+                                    image: movies[index*2+1].poster),
+                                Text(
+                                  movies[index*2+1].title,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => DescriptionScreen(
+                                    movieTitle: movies[index*2+1].title,
+                                    moviePoster: movies[index*2+1].poster,
+                                    movieBackdrop: movies[index*2+1].backdrop,
+                                    movieOverview: movies[index*2+1].overview,
+                                    movieReleaseDate: movies[index*2+1].releaseDate,
+                                    genreIds: movies[index*2+1].genreIds,
+                                    genreDatabase: genres,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      );
-                    },
+                      )
+                      : Expanded(),
+                    ],
                   ),
                 ),
               )
