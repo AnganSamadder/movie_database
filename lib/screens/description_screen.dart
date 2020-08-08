@@ -38,144 +38,150 @@ class DescriptionScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.width/2*3,
-            child: Stack(
-              children: <Widget>[
-                Image.network(
-                    movieBackdrop,
-                    color: Colors.black54,
-                    colorBlendMode: BlendMode.darken,
-                    fit: BoxFit.contain,
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                    Colors.black54,
+                    BlendMode.darken
                 ),
-                SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Image.network(
-                                  moviePoster,
-                                  scale: 3.0,
-                                ),
-                              ),
-                              Flexible(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Text(
-                                          movieTitle,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 24.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Genres:",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.bold
-                                        ),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                      Flexible(
-                                        child: ListView.builder(
-                                          primary: false,
-                                          reverse: false,
-                                          itemCount: genres.length == null ? 0 : genres.length,
-                                          itemBuilder: (_, int index) => Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                genres[index],
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18.0,
-                                                ),
-                                              ),
-                                            ]
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ]
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                  movieBackdrop
+                ),
+              ),
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Image.network(
+                              moviePoster,
+                              scale: 3.0,
+                            ),
                           ),
-                        ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "Overview",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5.0,
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: ListView(
-                                  physics: BouncingScrollPhysics(),
-                                  children: <Widget>[
-                                    Text(
-                                      movieOverview,
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Text(
+                                      movieTitle,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 18.0,
+                                        fontSize: 24.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Release Date:",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  Text(
+                                    releaseDateName,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "Genres:",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  Flexible(
+                                    child: ListView.builder(
+                                      primary: false,
+                                      reverse: false,
+                                      itemCount: genres.length == null ? 0 : genres.length,
+                                      itemBuilder: (_, int index) => Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            genres[index],
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18.0,
+                                            ),
+                                          ),
+                                        ]
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ]
+                      ),
                     ),
-                  ),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Overview",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Expanded(
+                            child: ListView(
+                              physics: BouncingScrollPhysics(),
+                              children: <Widget>[
+                                Text(
+                                  movieOverview,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Spacer(),
+                  ],
                 ),
-              ]
+              ),
             ),
           ),
-//        Row(
-//            children: <Widget>[
-//              Text(
-//                "Release Date: ",
-//                style: TextStyle(
-//                  fontSize: 20.0,
-//                  fontWeight: FontWeight.bold,
-//                ),
-//              ),
-//              Text(
-//                releaseDateName,
-//                style: TextStyle(
-//                  fontSize: 16.0,
-//                ),
-//              ),
-//            ],
-//          ),
         ],
       ),
     );
