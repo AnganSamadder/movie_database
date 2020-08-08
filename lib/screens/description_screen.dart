@@ -95,6 +95,8 @@ class DescriptionScreen extends StatelessWidget {
                                       ),
                                       Flexible(
                                         child: ListView.builder(
+                                          primary: false,
+                                          reverse: false,
                                           itemCount: genres.length == null ? 0 : genres.length,
                                           itemBuilder: (_, int index) => Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,14 +131,22 @@ class DescriptionScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Text(
-                                  movieOverview,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.0,
-                                  ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: ListView(
+                                  physics: BouncingScrollPhysics(),
+                                  children: <Widget>[
+                                    Text(
+                                      movieOverview,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -149,23 +159,23 @@ class DescriptionScreen extends StatelessWidget {
               ]
             ),
           ),
-          Row(
-              children: <Widget>[
-                Text(
-                  "Release Date: ",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  releaseDateName,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ),
-                ),
-              ],
-            ),
+//        Row(
+//            children: <Widget>[
+//              Text(
+//                "Release Date: ",
+//                style: TextStyle(
+//                  fontSize: 20.0,
+//                  fontWeight: FontWeight.bold,
+//                ),
+//              ),
+//              Text(
+//                releaseDateName,
+//                style: TextStyle(
+//                  fontSize: 16.0,
+//                ),
+//              ),
+//            ],
+//          ),
         ],
       ),
     );
